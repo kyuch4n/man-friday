@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "friday": "./friday/.js"
+    "friday": "./bin/friday.js"
   },
   "dependencies": {
     "commander": "^2.20.0"
