@@ -1,17 +1,21 @@
 {
-	"parser": "babel-eslint",
+	"parser": "typescript-eslint-parser",
 	"parserOptions": {
 		"ecmaVersion": 2018,
 		"ecmaFeatures": {
 			"jsx": true
 		}
 	},
+	"plugins": [
+		"typescript"
+	],
 	"env": {
 		"browser": true,
 		"es6": true,
 		"node": true
 	},
 	"rules": {
+		"typescript/class-name-casing": "error",
 		"for-direction": 2,
 		"getter-return": 2,
 		"no-async-promise-executor": 2,
@@ -66,7 +70,7 @@
 		"default-case": 2,
 		"dot-location": [2, "property"],
 		"dot-notation": [1, {"allowKeywords": true}],
-		"eqeqeq": 0,
+		"eqeqeq": ["error", "always", { "null": "ignore" }],
 		"guard-for-in": 0,
 		"max-classed-per-file": 0,
 		"no-alert": 0,
@@ -164,7 +168,7 @@
 		"comma-style": 2,
 		"computed-property-spacing": 2,
 		"consistent-this": [2, "self"],
-		"eol-last": 2,
+		"eol-last": 0,
 		"func-call-spacing": 2,
 		"func-name-matching": 0,
 		"func-names": 0,
@@ -227,7 +231,7 @@
 		"padding-line-between-statements": 0,
 		"prefer-object-spread": 1,
 		"quote-props": [2, "as-needed"],
-		"quotes": [2, "single", "avoid-escape"],
+		"quotes": [2, "double", "avoid-escape"],
 		"require-jsdoc": 0,
 		"semi": 2,
 		"semi-spacing": 2,

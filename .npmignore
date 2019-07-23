@@ -1,0 +1,10 @@
+# file
+.DS_Store
+.npm-debug.log
+.npmignore
+.eslintrc.json
+tsconfig.json
+package-lock.json
+
+# folder
+/node_modules

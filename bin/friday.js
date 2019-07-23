@@ -1,18 +1,31 @@
 #!/usr/bin/env node
-/**
- * 这种用法是为了防止用户没有将node装在默认的/usr/bin路径里。
- * 当系统看到这一行的时候，首先会到env设置里查找node的安装路径，再调用对应路径下的解释器程序完成操作。
- */
 "use strict";
 var cmd = require("commander");
+var shell = require("shelljs");
+var pkgJson = require("../package.json");
+var version = pkgJson.version;
 cmd
-    .command("test")
-    .description("可用性测试")
-    .action(function () {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
+    .version(version)
+    .description([
+    "***************",
+    "your Man Friday",
+    "***************"
+].join("\n"))
+    .option("-H, --hey", "something link 'Hey Siri'?");
+cmd
+    .command("open <app>")
+    .option("--no-secure", "open chrome with web security disabled")
+    .description("open app")
+    .action(function (app, _cmd) {
+    if (app === "chrome") {
+        if (!_cmd.secure) {
+            return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
+        }
+        shell.exec("open -a Google\\ Chrome");
     }
-    console.log("success");
+    return true;
 });
 cmd.parse(process.argv);
+if (cmd.hey)
+    console.log("Hey, I'm Friday~");
+//# sourceMappingURL=friday.js.map
