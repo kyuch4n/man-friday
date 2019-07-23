@@ -7,35 +7,24 @@
 
 "use strict";
 
-const cmd = require("commander");
-const shell = require("shelljs");
+class Friday {
+  private cmd: any;
+  version: any;
+  hey: any;
+  open: any;
 
-const pkgJson = require("../package.json");
-const version = pkgJson.version;
+  constructor() {
+    const { Version } = require("./version");
+    const { Hey } = require("./hey");
+    const { Open } = require("./open");
+    this.version = new Version().register();
+    this.hey = new Hey().register();
+    this.open = new Open().register();
 
-cmd
-    .version(version)
-    .description([
-        "***************",
-        "your Man Friday",
-        "***************"
-    ].join("\n"))
-    .option("-H, --hey", "something link 'Hey Siri'?");
+    this.cmd = require("commander");
+    this.cmd.parse(process.argv);
+  }
+}
 
-cmd
-    .command("open <app>")
-    .option("--no-secure", "open chrome with web security disabled")
-    .description("open app")
-    .action((app: string, _cmd: any) => {
-        if (app === "chrome") {
-            if (!_cmd.secure) {
-                return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
-            }
-            shell.exec("open -a Google\\ Chrome");
-        }
-        return true;
-    });
-
-cmd.parse(process.argv);
-
-if (cmd.hey) console.log("Hey, I'm Friday~");
+const friday = new Friday();
+friday.hey.sayHey();

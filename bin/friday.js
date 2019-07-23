@@ -1,31 +1,18 @@
 #!/usr/bin/env node
 "use strict";
-var cmd = require("commander");
-var shell = require("shelljs");
-var pkgJson = require("../package.json");
-var version = pkgJson.version;
-cmd
-    .version(version)
-    .description([
-    "***************",
-    "your Man Friday",
-    "***************"
-].join("\n"))
-    .option("-H, --hey", "something link 'Hey Siri'?");
-cmd
-    .command("open <app>")
-    .option("--no-secure", "open chrome with web security disabled")
-    .description("open app")
-    .action(function (app, _cmd) {
-    if (app === "chrome") {
-        if (!_cmd.secure) {
-            return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
-        }
-        shell.exec("open -a Google\\ Chrome");
+var Friday = (function () {
+    function Friday() {
+        var Version = require("./version").Version;
+        var Hey = require("./hey").Hey;
+        var Open = require("./open").Open;
+        this.version = new Version().register();
+        this.hey = new Hey().register();
+        this.open = new Open().register();
+        this.cmd = require("commander");
+        this.cmd.parse(process.argv);
     }
-    return true;
-});
-cmd.parse(process.argv);
-if (cmd.hey)
-    console.log("Hey, I'm Friday~");
+    return Friday;
+}());
+var friday = new Friday();
+friday.hey.sayHey();
 //# sourceMappingURL=friday.js.map
