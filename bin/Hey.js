@@ -15,4 +15,4 @@ var Hey = (function () {
     return Hey;
 }());
 exports.Hey = Hey;
-//# sourceMappingURL=hey.js.map
+//# sourceMappingURL=Hey.js.map

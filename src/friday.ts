@@ -7,16 +7,17 @@
 
 "use strict";
 
+import { Version } from "./version";
+import { Hey } from "./Hey";
+import { Open } from "./open";
+
 class Friday {
   private cmd: any;
-  version: any;
-  hey: any;
-  open: any;
+  version: Version;
+  hey: Hey;
+  open: Open;
 
   constructor() {
-    const { Version } = require("./version");
-    const { Hey } = require("./hey");
-    const { Open } = require("./open");
     this.version = new Version().register();
     this.hey = new Hey().register();
     this.open = new Open().register();

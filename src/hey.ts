@@ -7,7 +7,7 @@ export class Hey {
     this.cmd = require("commander");
   }
 
-  register() {
+  register(): Hey {
     this.cmd.option("-H, --hey", "something link 'Hey Siri'?");
     return this;
   }

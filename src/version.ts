@@ -2,7 +2,7 @@
 
 export class Version {
   private cmd: any;
-  private version: string;
+  version: string;
 
   constructor() {
     this.cmd = require("commander");
@@ -11,7 +11,7 @@ export class Version {
     this.version = pkgJson.version;
   }
 
-  register() {
+  register(): Version {
     this.cmd.version(this.version).description(["***************", "your Man Friday", "***************"].join("\n"));
     return this;
   }

@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
+var shell = require("shelljs");
 var Open = (function () {
     function Open() {
         this.cmd = require("commander");
-        this.shell = require("shelljs");
     }
     Open.prototype.register = function () {
         var _this = this;
@@ -20,9 +20,9 @@ var Open = (function () {
     };
     Open.prototype.openChrome = function () {
         if (!this.cmd.secure) {
-            return this.shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
+            return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
         }
-        return this.shell.exec("open -a Google\\ Chrome");
+        return shell.exec("open -a Google\\ Chrome");
     };
     return Open;
 }());

@@ -1,15 +1,15 @@
 "use strict";
 
+const shell = require("shelljs");
+
 export class Open {
   private cmd: any;
-  private shell: any;
 
   constructor() {
     this.cmd = require("commander");
-    this.shell = require("shelljs");
   }
 
-  register() {
+  register(): Open {
     this.cmd
       .command("open <app>")
       .option("--no-secure", "open chrome with web security disabled")
@@ -24,8 +24,8 @@ export class Open {
 
   private openChrome() {
     if (!this.cmd.secure) {
-      return this.shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
+      return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
     }
-    return this.shell.exec("open -a Google\\ Chrome");
+    return shell.exec("open -a Google\\ Chrome");
   }
 }
