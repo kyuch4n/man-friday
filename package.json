@@ -1,11 +1,10 @@
 {
   "name": "man-friday",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "keywords": [],
   "author": "kyuch4n",
   "license": "MIT",
-  "main": "index.js",
   "homepage": "https://github.com/kyuch4n/man-friday#readme",
   "repository": {
     "type": "git",
@@ -16,10 +15,11 @@
   },
   "scripts": {},
   "bin": {
-    "friday": "./bin/Friday.js"
+    "friday": "./bin/index.js"
   },
   "dependencies": {
     "commander": "^2.20.0",
+    "node-notifier": "^5.4.0",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
