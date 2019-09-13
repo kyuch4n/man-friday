@@ -1,3 +1,1 @@
 # man-friday
-
-## Private cli

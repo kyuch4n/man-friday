@@ -1,34 +1,44 @@
 #!/usr/bin/env node
 "use strict";
 exports.__esModule = true;
-var system_1 = require("./system");
-var application_1 = require("./application");
 var program = require("commander");
 var pkgJson = require("../package.json");
+var system_1 = require("./system");
+var application_1 = require("./application");
+var translate_1 = require("./translate");
 program
     .version(pkgJson.version);
 program
-    .option("-l, --lock [timeout]", "lock my mac immediately or after several seconds");
+    .command("lock [timeout]")
+    .description("lock my mac immediately or after several seconds")
+    .action(function (timeout, cmd) {
+    system_1["default"].lock(timeout);
+});
 program
-    .command("open")
-    .option("-n, --name <name>", "open app")
+    .command("open [name]")
+    .description("open app")
     .option("--no-secure", "open chrome and disable web security")
-    .action(function (cmd) {
-    switch (cmd.name) {
+    .action(function (name, cmd) {
+    switch (name) {
         case "chrome": return application_1["default"].launchChrome(cmd.secure);
         default: return;
     }
 });
 program
-    .command("restart")
-    .option("-n, --name <name>", "restart app")
+    .command("restart [name]")
+    .description("restart app")
     .option("--no-secure", "restart chrome and disable web security")
-    .action(function (cmd) {
-    switch (cmd.name) {
+    .action(function (name, cmd) {
+    switch (name) {
         case "chrome": return application_1["default"].restartChrome(cmd.secure);
         default: return;
     }
 });
+program
+    .command("translate [text]")
+    .alias("transl")
+    .action(function (text, cmd) {
+    translate_1.translate(text);
+});
 program.parse(process.argv);
-system_1["default"].exec();
 //# sourceMappingURL=index.js.map

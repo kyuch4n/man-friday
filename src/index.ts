@@ -7,58 +7,50 @@
 
 "use strict";
 
-import system from "./system";
-import application from "./application";
-
 const program = require("commander");
 const pkgJson = require("../package.json");
 
-/********************************************************************
- * define
- ********************************************************************/
-/**
- * friday -V, --version
- */
+import system from "./system";
+import application from "./application";
+import { translate } from "./translate";
+
 program
   .version(pkgJson.version);
 
-/**
- * friday -l, --lock
- */
 program
-  .option("-l, --lock [timeout]", "lock my mac immediately or after several seconds");
+  .command("lock [timeout]")
+  .description("lock my mac immediately or after several seconds")
+  .action((timeout: number, cmd: any) => {
+    system.lock(timeout);
+  });
 
-/**
- * friday open -n chrome --no-secure
- */
 program
-  .command("open")
-  .option("-n, --name <name>", "open app")
+  .command("open [name]")
+  .description("open app")
   .option("--no-secure", "open chrome and disable web security")
-  .action((cmd: any) => {
-    switch (cmd.name) {
+  .action((name: string, cmd: any) => {
+    switch (name) {
       case "chrome": return application.launchChrome(cmd.secure);
       default: return;
     }
   });
 
-/**
- * friday restart -n chrome --no-secure
- */
 program
-  .command("restart")
-  .option("-n, --name <name>", "restart app")
+  .command("restart [name]")
+  .description("restart app")
   .option("--no-secure", "restart chrome and disable web security")
-  .action((cmd: any) => {
-    switch (cmd.name) {
+  .action((name: string, cmd: any) => {
+    switch (name) {
       case "chrome": return application.restartChrome(cmd.secure);
       default: return;
     }
   });
 
-program.parse(process.argv);
+program
+  .command("translate [text]")
+  .alias("transl")
+  .action((text: string, cmd: any) => {
+    translate(text);
+  });
 
-/********************************************************************
- * exec
- ********************************************************************/
-system.exec();
+program.parse(process.argv);

@@ -1,6 +1,6 @@
 {
   "name": "man-friday",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "keywords": [],
   "author": "kyuch4n",
@@ -13,21 +13,28 @@
   "bugs": {
     "url": "https://github.com/kyuch4n/man-friday/issues"
   },
-  "scripts": {},
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
   "bin": {
+    "fri": "./bin/index.js",
     "friday": "./bin/index.js"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "node-notifier": "^5.4.0",
-    "shelljs": "^0.8.3"
+    "ora": "^3.4.0",
+    "shelljs": "^0.8.3",
+    "youdao": "0.0.10"
   },
   "devDependencies": {
     "@types/node": "^12.6.8",
     "babel-eslint": "^10.0.2",
     "eslint": "^5.0.0",
     "eslint-plugin-typescript": "^0.14.0",
-    "typescript": "^3.5.3",
+    "typescript": "^3.6.2",
     "typescript-eslint-parser": "^22.0.0"
   }
 }

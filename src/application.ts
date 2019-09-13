@@ -3,9 +3,6 @@
 const shell = require("shelljs");
 
 function launchChrome(secure: boolean) {
-  /**
-   * friday open -n chrome --no-secure
-   */
   if (!secure) {
     return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
   }
@@ -13,9 +10,6 @@ function launchChrome(secure: boolean) {
 }
 
 function restartChrome(secure: boolean) {
-  /**
-   * friday restart -n chrome --no-secure
-   */
   shell.exec("killall Google\\ Chrome");
   launchChrome(secure);
 }
