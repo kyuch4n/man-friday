@@ -2,6 +2,11 @@
 
 const shell = require("shelljs");
 
+function updateFriday() {
+  console.log("start downloading...");
+  shell.exec("npm install -g man-friday@latest");
+}
+
 function launchChrome(secure: boolean) {
   if (!secure) {
     return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
@@ -15,6 +20,7 @@ function restartChrome(secure: boolean) {
 }
 
 export default {
+  updateFriday,
   launchChrome,
   restartChrome,
 };

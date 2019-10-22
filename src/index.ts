@@ -25,6 +25,13 @@ program
   });
 
 program
+  .command("update")
+  .description("update friday to latest version")
+  .action(() => {
+    application.updateFriday();
+  });
+
+program
   .command("open [name]")
   .description("open app")
   .option("--no-secure", "open chrome and disable web security")

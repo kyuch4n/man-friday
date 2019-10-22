@@ -1,19 +1,25 @@
 "use strict";
 
 const path = require("path");
+const pm2 = require("pm2");
 const notifier = require("node-notifier");
 
 function lock(timeout: number = 0) {
-  setTimeout(() => {
-    const spawn = require("child_process").spawn;
-    spawn("/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession", ["-suspend"]);
-  }, timeout * 1000);
+  pm2.start({
+    instances: 1,
+    exec_mode: "cluster",
+    script: "bin/modules/lock.js",
+    args: timeout,
+  }, (err: any) => {
+    if (err) console.log(err);
+    pm2.disconnect();
+  });
 
   if (timeout > 3) {
     notifier.notify({
       title: "this is Friday",
       message: `Your mac will be locked after ${timeout}s~`,
-      icon: path.resolve(__dirname, "../src/assets/logo.png"),
+      icon: path.resolve(__dirname, "./assets/logo.png"),
       sound: true,
     });
   }

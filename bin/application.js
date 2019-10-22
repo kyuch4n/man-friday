@@ -1,6 +1,10 @@
 "use strict";
 exports.__esModule = true;
 var shell = require("shelljs");
+function updateFriday() {
+    console.log("start downloading...");
+    shell.exec("npm install -g man-friday@latest");
+}
 function launchChrome(secure) {
     if (!secure) {
         return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
@@ -12,6 +16,7 @@ function restartChrome(secure) {
     launchChrome(secure);
 }
 exports["default"] = {
+    updateFriday: updateFriday,
     launchChrome: launchChrome,
     restartChrome: restartChrome
 };

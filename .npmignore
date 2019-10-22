@@ -3,8 +3,13 @@
 .npm-debug.log
 .npmignore
 .eslintrc.json
+.eslintignore
+.gitignore
 tsconfig.json
 package-lock.json
+TODO.md
 
 # folder
 /node_modules
+/scripts
+/src

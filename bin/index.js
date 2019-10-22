@@ -15,6 +15,12 @@ program
     system_1["default"].lock(timeout);
 });
 program
+    .command("update")
+    .description("update friday to latest version")
+    .action(function () {
+    application_1["default"].updateFriday();
+});
+program
     .command("open [name]")
     .description("open app")
     .option("--no-secure", "open chrome and disable web security")
