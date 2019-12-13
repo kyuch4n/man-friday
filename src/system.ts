@@ -8,7 +8,7 @@ function lock(timeout: number = 0) {
   pm2.start({
     instances: 1,
     exec_mode: "cluster",
-    script: "bin/modules/lock.js",
+    script: "./modules/lock.js",
     args: timeout,
   }, (err: any) => {
     if (err) console.log(err);
