@@ -14,6 +14,8 @@ import system from "./system";
 import application from "./application";
 import { translate } from "./translate";
 
+const { googleSearch } = require("./open")
+
 program
   .version(pkgJson.version);
 
@@ -58,6 +60,12 @@ program
   .alias("transl")
   .action((text: string, cmd: any) => {
     translate(text);
+  });
+
+program
+  .command("search [text]")
+  .action((text: string, cmd: any) => {
+    googleSearch(text);
   });
 
 program.parse(process.argv);

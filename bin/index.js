@@ -6,6 +6,7 @@ var pkgJson = require("../package.json");
 var system_1 = require("./system");
 var application_1 = require("./application");
 var translate_1 = require("./translate");
+var googleSearch = require("./open").googleSearch;
 program
     .version(pkgJson.version);
 program
@@ -45,6 +46,11 @@ program
     .alias("transl")
     .action(function (text, cmd) {
     translate_1.translate(text);
+});
+program
+    .command("search [text]")
+    .action(function (text, cmd) {
+    googleSearch(text);
 });
 program.parse(process.argv);
 //# sourceMappingURL=index.js.map
