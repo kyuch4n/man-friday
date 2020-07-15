@@ -9,6 +9,7 @@ function updateFriday() {
 
 function launchChrome(secure: boolean) {
   if (!secure) {
+    // open -n /Applications/Google\ Chrome.app/ --args --disable-web-security --user-data-dir=/Users/kyuchan/ChromeData
     return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
   }
   return shell.exec("open -a Google\\ Chrome");
