@@ -7,7 +7,7 @@ function updateFriday() {
 }
 function launchChrome(secure) {
     if (!secure) {
-        return shell.exec("open -a Google\\ Chrome --args --disable-web-security --user-data-dir");
+        return shell.exec("open -n /Applications/Google Chrome.app/ --args --disable-web-security  --auto-open-devtools-for-tabs --user-data-dir=/Users/${USER}/MyChromeDevUserData");
     }
     return shell.exec("open -a Google\\ Chrome");
 }

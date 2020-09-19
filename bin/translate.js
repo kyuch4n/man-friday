@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.translate = void 0;
 var chalk = require("chalk");
 var youdao = require("youdao");
 youdao.set({ keyfrom: "node-fanyi", key: "110811608" });
